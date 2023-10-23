@@ -10,7 +10,7 @@ public class Main {
 
 
     public static void main(String[] args) {
-        // ce main sert à faire des tests ou à ajouter des utilisateur grâce à la méthode BDDlogin.ajouterCommercial()
+        // ce main sert à faire des tests ou à ajouter des utilisateur grâce à la méthode BDDlogin.ajouterCommercial(login,password,nom,prenom) tout en string
     }
 
 }
