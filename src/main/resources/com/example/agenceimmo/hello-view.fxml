@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="1000.0" prefWidth="1200.0" spacing="20.0" styleClass="background" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.agenceimmo.HelloController">
+    <Label text="Login :">
+        <font>
+            <Font name="System Bold" size="22.0" />
+        </font></Label>
+    <TextField fx:id="monLogin" styleClass="input_log">
+      <VBox.margin>
+         <Insets bottom="70.0" top="20.0" />
+      </VBox.margin></TextField>
+
+
+    <Label text="Mot de passe :">
+        <font>
+            <Font name="System Bold" size="22.0" />
+        </font>
+      <VBox.margin>
+         <Insets />
+      </VBox.margin></Label>
+    <PasswordField fx:id="monMDP" styleClass="input_log">
+      <VBox.margin>
+         <Insets top="15.0" />
+      </VBox.margin></PasswordField>
+    <Button fx:id="monBoutonConnecter" onAction="#onHelloButtonClick" styleClass="btn" text="Connexion">
+      <VBox.margin>
+         <Insets top="40.0" />
+      </VBox.margin></Button>
+
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+</VBox>

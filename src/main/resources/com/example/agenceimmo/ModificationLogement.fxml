@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="240" prefWidth="320" styleClass="bg_accueil" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.agenceimmo.ModificationLogementController">
+    <children>
+        <Label layoutX="18.0" layoutY="33.0" text="Nom du logement:" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font></Label>
+        <TextField fx:id="nomLogementTextField" layoutX="145" layoutY="29" prefWidth="150" />
+        <Label layoutX="17.0" layoutY="73.0" text="Nombre de pièces:" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font></Label>
+        <TextField fx:id="nbPiecesTextField" layoutX="145" layoutY="69" prefWidth="150" />
+        <Label layoutX="63.0" layoutY="113.0" text="Rue:" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font></Label>
+        <TextField fx:id="rueTextField" layoutX="145" layoutY="109" prefWidth="150" />
+        <Label layoutX="41.0" layoutY="153.0" text="Code postal:" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="11.0" />
+         </font></Label>
+        <TextField fx:id="codePostalTextField" layoutX="145" layoutY="149" prefWidth="150" />
+        <Label layoutX="61.0" layoutY="193.0" text="Ville:" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font></Label>
+        <TextField fx:id="villeTextField" layoutX="145" layoutY="189" prefWidth="150" />
+        <Button layoutX="130.0" layoutY="224.0" mnemonicParsing="false" styleClass="btnUpdate" onAction="#modifierLogement" prefHeight="16.0" prefWidth="61.0" text="Modifier" />
+    </children>
+</AnchorPane>

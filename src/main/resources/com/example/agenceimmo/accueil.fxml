@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="1000.0" prefWidth="1600.0" styleClass="bg_accueil" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.agenceimmo.AccueilController">
+    <HBox prefHeight="257.0" prefWidth="1600.0">
+        <children>
+            <ImageView fitHeight="259.0" fitWidth="438.0" pickOnBounds="true" preserveRatio="true">
+
+            </ImageView>
+            <Label alignment="CENTER" prefHeight="260.0" prefWidth="688.0" text="AGENCE IMMO" textOverrun="CENTER_ELLIPSIS">
+            <font>
+               <Font name="Calibri Bold" size="57.0" />
+            </font></Label>
+            <Label prefHeight="259.0" prefWidth="479.0" />
+        </children>
+    </HBox>
+   <TabPane layoutY="274.0" prefHeight="726.0" prefWidth="1600.0" tabClosingPolicy="UNAVAILABLE">
+     <tabs>
+       <Tab text="Logements">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="1551.0">
+                  <children>
+                           <HBox layoutY="72.0" prefHeight="618.0" prefWidth="718.0">
+                               <TableView fx:id="logementTableView" onMouseClicked="#clicLogements" prefHeight="576.0" prefWidth="718.0" styleClass="logementTable" VBox.vgrow="ALWAYS">
+                                   <columns>
+                                       <TableColumn fx:id="idCol" prefWidth="100" text="ID" />
+                                       <TableColumn fx:id="nomCol" prefWidth="100" text="Nom" />
+                                       <TableColumn fx:id="rueCol" prefWidth="127.33332824707031" text="Rue" />
+                                       <TableColumn fx:id="nbPiecesCol" minWidth="0.0" prefWidth="95.0" text="Nombre pièces" />
+                                       <TableColumn fx:id="cpCol" minWidth="0.0" prefWidth="82.3333740234375" text="Code Postal" />
+                                       <TableColumn fx:id="villeCol" prefWidth="210.99996948242188" text="Ville" />
+                                   </columns>
+                               </TableView>
+                           </HBox>
+                      <ComboBox fx:id="pieceComboBox" layoutX="762.0" layoutY="418.0" prefHeight="32.0" prefWidth="175.0" promptText="Pièce" styleClass="" />
+                      <ComboBox fx:id="equipementComboBox" layoutX="982.0" layoutY="418.0" prefHeight="32.0" prefWidth="175.0" promptText="Équipement" styleClass="" />
+                      <TextField fx:id="nbPiecesTextField" layoutX="1207.0" layoutY="418.0" prefHeight="25.0" prefWidth="181.0" promptText="ID Commercial" styleClass="inputInfoLogement" />
+                      <TextField fx:id="nomTextField" layoutX="1207.0" layoutY="418.0" prefHeight="25.0" prefWidth="181.0" promptText="ID Commercial" styleClass="inputInfoLogement" />
+                      <TextField fx:id="cpTextField" layoutX="1207.0" layoutY="418.0" prefHeight="25.0" prefWidth="181.0" promptText="ID Commercial" styleClass="inputInfoLogement" />
+                      <TextField fx:id="villeTextField" layoutX="1207.0" layoutY="418.0" prefHeight="25.0" prefWidth="181.0" promptText="ID Commercial" styleClass="inputInfoLogement" />
+                      <TextField fx:id="rueTextField" layoutX="1207.0" layoutY="418.0" prefHeight="25.0" prefWidth="181.0" promptText="ID Commercial" styleClass="inputInfoLogement" />
+                      <TextField fx:id="idCommercialTextField" layoutX="1207.0" layoutY="418.0" prefHeight="25.0" prefWidth="181.0" promptText="ID Commercial" styleClass="inputInfoLogement" />
+                      <Button layoutX="972.0" layoutY="622.0" onAction="#supprimerLogement" prefHeight="48.0" prefWidth="146.0" styleClass="btnDelete" text="Supprimer" textFill="WHITE">
+                        <font>
+                           <Font name="Arial Black" size="15.0" />
+                        </font></Button>
+                      <Button layoutX="813.0" layoutY="622.0" onAction="#ouvrirFenetreModification" prefHeight="49.0" prefWidth="124.0" styleClass="btnUpdate" text="Modifier" textFill="WHITE">
+                        <font>
+                           <Font name="Arial Black" size="13.0" />
+                        </font></Button>
+                      <ImageView fx:id="logementImageView" fitHeight="224.0" fitWidth="241.0" layoutX="762.0" layoutY="125.0" styleClass="imageLogement" />
+                      <ImageView fx:id="piecesImage" fitHeight="224.0" fitWidth="241.0" layoutX="1026.0" layoutY="125.0" styleClass="imageLogement" />
+                     <Label alignment="CENTER" layoutX="800.0" layoutY="381.0" prefHeight="30.0" prefWidth="84.0" text="Pièce">
+                        <font>
+                           <Font name="Arial" size="25.0" />
+                        </font>
+                     </Label>
+                     <Label alignment="CENTER" layoutX="989.0" layoutY="381.0" prefHeight="30.0" prefWidth="161.0" text="Equipement">
+                        <font>
+                           <Font name="Arial" size="25.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="surfacePiece" layoutX="759.0" layoutY="499.0" prefHeight="25.0" prefWidth="181.0" promptText="Surface" styleClass="inputInfoLogement" />
+                  </children></AnchorPane>
+         </content>
+       </Tab>
+       <Tab text="Ajouter un logement">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                      <Label layoutX="74.0" layoutY="151.0" prefHeight="51.0" prefWidth="196.0" text="Nom" textFill="WHITE">
+                          <font>
+                              <Font name="Calibri Bold" size="16.0" />
+                          </font>
+                      </Label>
+                      <TextField fx:id="nom" layoutX="74.0" layoutY="197.0" prefHeight="32.0" prefWidth="173.0" styleClass="inputAddLogement" />
+
+                     <Label layoutX="351.0" layoutY="151.0" prefHeight="51.0" prefWidth="196.0" text="Nombre de pièces" textFill="WHITE">
+                        <font>
+                           <Font name="Calibri Bold" size="16.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="nbPieces" layoutX="351.0" layoutY="197.0" prefHeight="32.0" prefWidth="173.0" styleClass="inputAddLogement" />
+
+                      <Label layoutX="74.0" layoutY="264.0" prefHeight="51.0" prefWidth="196.0" text="Rue" textFill="WHITE">
+                          <font>
+                              <Font name="Calibri Bold" size="16.0" />
+                          </font>
+                      </Label>
+                      <TextField fx:id="rue" layoutX="74.0" layoutY="310.0" prefHeight="32.0" prefWidth="173.0" styleClass="inputAddLogement" />
+
+                     <Label layoutX="351.0" layoutY="267.0" prefHeight="51.0" prefWidth="196.0" text="Code postal" textFill="WHITE">
+                        <font>
+                           <Font name="Calibri Bold" size="16.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="codePostal" layoutX="351.0" layoutY="313.0" prefHeight="32.0" prefWidth="173.0" styleClass="inputAddLogement" />
+
+                     <Label layoutX="74.0" layoutY="379.0" prefHeight="51.0" prefWidth="196.0" text="Ville" textFill="WHITE">
+                        <font>
+                           <Font name="Calibri Bold" size="16.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="ville" layoutX="74.0" layoutY="425.0" prefHeight="32.0" prefWidth="173.0" styleClass="inputAddLogement" />
+
+                     <ImageView fx:id="imageView" fitHeight="300.0" fitWidth="300.0" layoutX="729.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true" />
+
+                     <Label layoutX="351.0" layoutY="388.0" prefHeight="51.0" prefWidth="196.0" text="Nom commercial" textFill="WHITE">
+                        <font>
+                           <Font name="Calibri Bold" size="16.0" />
+                        </font>
+                     </Label>
+                     <ComboBox fx:id="commercialCombo" layoutX="348.0" layoutY="426.0" prefHeight="38.0" prefWidth="179.0" />
+                      <Button fx:id="buttonLogement" layoutX="808.0" layoutY="464.0" maxHeight="300" maxWidth="300" mnemonicParsing="false" onAction="#uploadButtonLogement" text="Sélectionner une image" />
+                      <Button fx:id="createLogementButton" layoutX="655.0" layoutY="533.0" mnemonicParsing="false" onAction="#createNewLogement" text="Valider" styleClass="btnSuccess" />
+                     <Label layoutX="465.0" layoutY="72.0" text="Ajouter un logement" textFill="WHITE">
+                        <font>
+                           <Font name="Arial Black" size="39.0" />
+                        </font>
+                     </Label>
+                  </children></AnchorPane>
+         </content>
+       </Tab>
+         <Tab text="Ajouter des pièces/équipements">
+             <content>
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                         <Label layoutX="61.0" layoutY="194.0" prefHeight="51.0" prefWidth="196.0" text="Libellé" textFill="WHITE">
+                             <font>
+                                 <Font name="Calibri Bold" size="16.0" />
+                             </font>
+                         </Label>
+                         <TextField fx:id="libelle" layoutX="61.0" layoutY="245.0" prefHeight="32.0" prefWidth="173.0" styleClass="inputAddLogement" />
+                         <Label layoutX="61.0" layoutY="323.0" prefHeight="51.0" prefWidth="196.0" text="Surface (m²)" textFill="WHITE">
+                             <font>
+                                 <Font name="Calibri Bold" size="16.0" />
+                             </font>
+                         </Label>
+                         <TextField fx:id="surface" layoutX="61.0" layoutY="374.0" prefHeight="32.0" prefWidth="173.0" styleClass="inputAddLogement" />
+                         <ImageView fx:id="imageViewPieces" fitHeight="300.0" fitWidth="300.0" layoutX="332.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" />
+                         <Button fx:id="addPiece" layoutX="257.0" layoutY="601.0" mnemonicParsing="false" onAction="#addPiece" text="Valider" styleClass="btnSuccess" />
+                         <Button fx:id="buttonPieces" layoutX="418.0" layoutY="470.0" maxHeight="300" maxWidth="300" mnemonicParsing="false" onAction="#uploadButtonPieces" text="Séléctionner une image" />
+                         <Label layoutX="61.0" layoutY="70.0" prefHeight="51.0" prefWidth="196.0" text="Logement" textFill="WHITE">
+                             <font>
+                                 <Font name="Calibri Bold" size="16.0" />
+                             </font>
+                         </Label>
+                         <ComboBox fx:id="logementCombo" layoutX="59.0" layoutY="127.0" prefHeight="35.0" prefWidth="179.0" />
+                         
+                     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="257.0" layoutY="26.0" prefHeight="51.0" prefWidth="196.0" text="Pièces" textAlignment="CENTER" textFill="WHITE">
+                        <font>
+                           <Font name="Calibri Bold" size="39.0" />
+                        </font>
+                     </Label>
+                     <Label layoutX="741.0" layoutY="302.0" prefHeight="51.0" prefWidth="196.0" text="Nom" textFill="WHITE">
+                        <font>
+                           <Font name="Calibri Bold" size="16.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="nomEquipement" layoutX="741.0" layoutY="353.0" prefHeight="32.0" prefWidth="173.0" styleClass="inputAddLogement" />
+                     <Label layoutX="741.0" layoutY="178.0" prefHeight="51.0" prefWidth="196.0" text="Piece" textFill="WHITE">
+                        <font>
+                           <Font name="Calibri Bold" size="16.0" />
+                        </font>
+                     </Label>
+                     <ComboBox fx:id="pieceCombo" layoutX="739.0" layoutY="235.0" prefHeight="35.0" prefWidth="179.0" />
+                     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="930.0" layoutY="52.0" prefHeight="51.0" prefWidth="218.0" text="Equipement" textAlignment="CENTER" textFill="WHITE">
+                        <font>
+                           <Font name="Calibri Bold" size="39.0" />
+                        </font>
+                     </Label>
+                     <Button fx:id="addEquipement" layoutX="937.0" layoutY="576.0" mnemonicParsing="false" onAction="#addEquipement" text="Valider" styleClass="btnSuccess" />
+                     <Button fx:id="buttonEquipement" layoutX="1054.0" layoutY="495.0" maxHeight="300" maxWidth="300" mnemonicParsing="false" onAction="#uploadButtonEquipement" text="Séléctionner une image" />
+                     <ImageView fx:id="imageViewEquipement" fitHeight="259.0" fitWidth="273.0" layoutX="988.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" />
+                     </children></AnchorPane>
+             </content>
+         </Tab>
+     </tabs>
+   </TabPane>
+</AnchorPane>

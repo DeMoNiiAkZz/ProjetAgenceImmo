@@ -1,0 +1,156 @@
+Application pour gérer les logements à la location
+
+
+Premier temps -> composition des pièces, surfaces, équipements présents (meubles, etc...)
+
+
+----------------------
+
+package com.example.agenceimmo;
+
+import java.security.SecureRandom;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class BDDlogin {
+
+    static String lien = "jdbc:mysql://172.19.0.35/agentImmo";
+    static String login = "fullperm";
+    static String password = "0550002D";
+
+    public static Connection connecterDB() {
+        try {
+            Connection connexion = DriverManager.getConnection(lien, login, password);
+            System.out.println("Connexion à la base réussie");
+            return connexion;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void ajouterCommercial(String login, String password, String nom, String prenom) {
+        Connection connection = connecterDB();
+        try {
+            byte[] salt = generateSalt();
+            String hashedPassword = PasswordHashing.hashPassword(password, salt);
+
+            String insertQuery = "INSERT INTO `Commercial` (`login_commercial`, `salt`, `hashed_password`, `nom_commercial`, `prenom_commercial`) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+            preparedStatement.setString(1, login);
+            preparedStatement.setBytes(2, salt);
+            preparedStatement.setString(3, hashedPassword);
+            preparedStatement.setString(4, nom);
+            preparedStatement.setString(5, prenom);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Commercial ajouté avec succès.");
+            } else {
+                System.out.println("Erreur lors de l'ajout du commercial.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static byte[] generateSalt() {
+        SecureRandom random = new SecureRandom();
+        byte[] salt = new byte[16];
+        random.nextBytes(salt);
+        return salt;
+    }
+
+    public static boolean verifierUtilisateur(String nom_commercial, String password_commercial) {
+        Connection connexion = connecterDB();
+        try {
+            String query = "SELECT salt, hashed_password FROM Commercial WHERE login_commercial = ?";
+            PreparedStatement preparedStatement = connexion.prepareStatement(query);
+            preparedStatement.setString(1, nom_commercial);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                byte[] salt = resultSet.getBytes("salt");
+                String hashedPassword = resultSet.getString("hashed_password");
+                String hashedAttempt = PasswordHashing.hashPassword(password_commercial, salt);
+
+                if (hashedPassword.equals(hashedAttempt)) {
+                    System.out.println("Authentification réussie");
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static List<Logement> getLogements() {
+        List<Logement> logements = new ArrayList<>();
+        connecterDB();
+
+        try (Connection connexion = DriverManager.getConnection(lien, login, password)) {
+            String query = "SELECT * FROM Logements";
+            PreparedStatement preparedStatement = connexion.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Logement logement = new Logement(
+                        resultSet.getInt("id_logement"),
+                        resultSet.getInt("nb_pieces"),
+                        resultSet.getString("cp_logement"),
+                        resultSet.getString("ville_logement"),
+                        resultSet.getInt("id_commercial")
+                );
+                logements.add(logement);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur affichage des logements");
+            e.printStackTrace();
+        }
+        return logements;
+    }
+}
+
+
+-----------------------
+
+package com.example.agenceimmo;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+
+public class PasswordHashing {
+
+    public static String hashPassword(String password, byte[] salt) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(salt);
+            byte[] hashedPassword = md.digest(password.getBytes());
+
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashedPassword) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static byte[] generateSalt() {
+        SecureRandom random = new SecureRandom();
+        byte[] salt = new byte[16];
+        random.nextBytes(salt);
+        return salt;
+    }
+}
+
+--------------------
+
+
+"Alpha", "9P4R2jbM6zmtW4"
+"Enzo", "iZS6c97Q27eXvg"
