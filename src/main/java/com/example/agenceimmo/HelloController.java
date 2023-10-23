@@ -18,7 +18,6 @@ public class HelloController {
     @FXML
     private PasswordField monMDP;
 
-
     @FXML
     protected void onHelloButtonClick() throws IOException {
         String nomUtilisateur = monLogin.getText();
